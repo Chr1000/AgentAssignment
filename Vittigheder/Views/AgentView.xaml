@@ -1,0 +1,118 @@
+﻿<Window x:Class="Vittigheder.AgentWiew"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vittigheder"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Height="300" Width="800"
+        WindowStartupLocation="CenterOwner"
+        FocusManager.FocusedElement="{Binding ElementName=tbxId}"
+        ShowInTaskbar="False"
+        Title="{Binding Path=Title}" 
+        >
+    <Grid Background="Aquamarine">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Label Margin="5,0,0,0" FontSize="15">Tilføj en Joke</Label>
+        <Label Margin="5,40,0,0" >Dato</Label>
+        <Label Grid.Row="1"
+               Margin="5,0,0,0"  >EmneOrd</Label>
+        <Label Grid.Row="2"
+               Margin="5,0,0,0"  >Kilde</Label>
+        <Label Grid.Row="3" Margin="5,0,0,0" >Vittigheden</Label>
+        <!--<TextBox Grid.Column="1"        
+                 Name="tbxId" 
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Left" 
+                 MinWidth="75"
+                 Text="{Binding Path=CurrentAgent.ID}"
+                 Style="{StaticResource JamesStyle}"
+                 TabIndex="1"
+                 />-->
+        <TextBox Grid.Column="1"        
+                 Name="tbxId" 
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Left" 
+                 MinWidth="350"
+                 Text="{Binding Path=CurrentAgent.ID}"
+                 Style="{StaticResource InputStyle}"
+                 TabIndex="1"
+                 Margin="0,40,0,0"
+                 />
+        <!--<TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Date: {0:dddd, MMMM dd yyyy}}" />-->
+
+<TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Name="tbxCodeName" 
+                 Text="{Binding Path=CurrentAgent.CodeName}"
+                 Style="{StaticResource InputStyle}"
+                 TabIndex="2"
+                 />
+        <ComboBox Grid.Column="1"
+                  Grid.Row="2"
+                  SelectedItem="{Binding Path=CurrentAgent.Speciality}" 
+                  ItemsSource="{Binding Path=Specialities}"
+                  Style="{StaticResource InputStyle}"
+                  TabIndex="2"
+                  />
+        <!--<TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 Name="tbxSpeciality"
+                 Text="{Binding Path=CurrentAgent.Speciality}" 
+                 Style="{StaticResource InputStyle}"
+                 TabIndex="3"
+        />-->
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="3"
+                 Name="tbxAssignment" 
+                 Text="{Binding Path=CurrentAgent.Assignment}" 
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Stretch"
+                 VerticalScrollBarVisibility="Auto"
+                 Style="{StaticResource InputStyle}" 
+                 TabIndex="4"
+                 MinWidth="350"
+                 />
+        <WrapPanel Grid.Column="1"
+                   Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   >
+            <Button IsDefault="True" 
+                    TabIndex="5"
+                    MinWidth="75" 
+                    Name="btnOk" 
+                    Click="BtnOk_Click"
+                    Command="{Binding Path=OkBtnCommand}"
+                    Content="_Tilføj"
+                    Margin="5"
+                    />
+            <Button Grid.Column="1"
+                    Grid.Row="4"
+                    IsCancel="True" 
+                    TabIndex="6"
+                    MinWidth="75" 
+                    Name="btnCancel" 
+                    Content="_Cancel"
+                    Margin="5"
+                    />
+        </WrapPanel>
+        <Image Source="../images/funny.jpg"  Grid.Column="3" Grid.RowSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right"></Image>
+
+    </Grid>
+</Window>
